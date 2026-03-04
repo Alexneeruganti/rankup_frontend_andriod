@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="32dp">
+
+    <!-- Header Section (Centered) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/t2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEBASTIAN BENNETT"
+            android:textColor="#333333"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/t2_jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Professional Accountant"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:layout_marginTop="4dp"
+            android:letterSpacing="0.05"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <!-- Contact Info Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/t2_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+123-456-7890"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="4dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/t2_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="hello@reallygreatsite.com"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="4dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/t2_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="123 Anywhere St., Any City"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="4dp"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333333"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- ABOUT ME -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ABOUT ME"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/t2_objective"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+        android:textColor="#555555"
+        android:textSize="12sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="24dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333333"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- EDUCATION -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EDUCATION"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/t2_education"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Borcelle University | 2026-2030\nSenior Accountant\nLorem ipsum dolor sit amet..."
+        android:textColor="#555555"
+        android:textSize="12sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="24dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333333"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- WORK EXPERIENCE -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WORK EXPERIENCE"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/t2_experience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salford &amp; Co. | 2033 - 2035\nSenior Accountant\nLorem ipsum dolor sit amet..."
+        android:textColor="#555555"
+        android:textSize="12sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="24dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333333"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- SKILLS -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SKILLS"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Using a simple TextView for skills to mimic the bulleted columns layout dynamically or just a block of text based on user input -->
+    <TextView
+        android:id="@+id/t2_skills"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• Auditing    • Financial Accounting    • Financial Reporting"
+        android:textColor="#555555"
+        android:textSize="12sp"
+        android:lineSpacingExtra="6dp"
+        android:layout_marginBottom="8dp"/>
+
+</LinearLayout>

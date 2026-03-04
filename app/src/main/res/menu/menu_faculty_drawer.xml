@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_home"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_alerts"
+            android:icon="@drawable/ic_notification"
+            android:title="Admin Alerts" />
+        <item
+            android:id="@+id/nav_higher_ed"
+            android:icon="@drawable/ic_hat"
+            android:title="Higher Ed Portal" />
+        <item
+            android:id="@+id/nav_create_test"
+            android:icon="@drawable/ic_clipboard"
+            android:title="Create Test" />
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@drawable/ic_group"
+            android:title="Student Requests" />
+        <item
+            android:id="@+id/nav_upload_content"
+            android:icon="@drawable/ic_book"
+            android:title="Upload Content" />
+        <item
+            android:id="@+id/nav_analytics"
+            android:icon="@drawable/ic_chart"
+            android:title="Student Analytics" />
+    </group>
+</menu>

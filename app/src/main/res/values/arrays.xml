@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="levels_array">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+    </string-array>
+    
+    <string-array name="difficulty_levels">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string-array name="programming_languages">
+        <item>python</item>
+        <item>java</item>
+        <item>cpp</item>
+        <item>javascript</item>
+    </string-array>
+    <string-array name="tech_topics_array">
+        <item>Java</item>
+        <item>C++</item>
+        <item>DBMS</item>
+        <item>Operating Systems</item>
+        <item>Computer Networks</item>
+    </string-array>
+</resources>

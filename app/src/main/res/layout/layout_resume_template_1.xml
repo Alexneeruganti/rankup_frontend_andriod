@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:background="#F0F0F0">
+
+        <TextView
+            android:id="@+id/t1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorna Alvarado"
+            android:textColor="#333333"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"/>
+
+        <TextView
+            android:id="@+id/t1_jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marketing Manager"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:layout_marginTop="4dp"
+            android:letterSpacing="0.1"/>
+    </LinearLayout>
+
+    <!-- Contact Info Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#D9D9D9"
+        android:padding="12dp"
+        android:gravity="center"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/t1_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+123-456-7890"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/t1_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="hello@reallygreatsite.com"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/t1_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="123 Anywhere St., Any City"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"/>
+
+    <!-- Content Split -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:baselineAligned="false">
+
+        <!-- Left Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:orientation="vertical"
+            android:paddingEnd="16dp">
+
+            <!-- Education -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDUCATION"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BA Sales and Commerce\nBorcelle University\n(2016 - 2020)"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- Skills -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SKILLS"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_skills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Management Skills\n• Digital Marketing\n• Negotiation\n• Critical Thinking"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="8dp"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- Languages -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LANGUAGE"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_languages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• English\n• Spanish\n• French"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Vertical Divider -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#CCCCCC"
+            android:layout_marginEnd="16dp"/>
+
+        <!-- Right Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65"
+            android:orientation="vertical">
+
+            <!-- Profile -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROFILE"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_objective"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- Work Experience -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WORK EXPERIENCE"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ginyard International Co.\nProduct Design Manager\n2020 - 2023\n\nLorem ipsum dolor sit amet..."
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- References -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REFERENCES"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/t1_references"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bailey Dupont\nWardiere Inc. / CEO\nPhone: 123-456-7890\nEmail: hello@reallygreatsite.com"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

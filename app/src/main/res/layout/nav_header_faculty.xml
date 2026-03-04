@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="#448AFF"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <!-- Faded Shield Background -->
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/ic_shield_white"
+        android:alpha="0.2"
+        android:rotation="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="-40dp"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/btnCloseDrawer"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_close"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        app:tint="#FFFFFF"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- RankUp Logo Text -->
+    <TextView
+        android:id="@+id/tvNavTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RANKUP"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FACULTY ACCESS PROTOCOL"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:textColor="#E0E0E0"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/tvNavTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvNavTitle"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

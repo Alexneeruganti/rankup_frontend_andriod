@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_find_faculty"
+            android:icon="@drawable/ic_find_faculty"
+            android:title="Find Faculty" />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_notification"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_coding"
+            android:icon="@drawable/ic_code"
+            android:title="Coding Practice" />
+        <item
+            android:id="@+id/nav_communication"
+            android:icon="@drawable/ic_communication"
+            android:title="Communication Round" />
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:icon="@drawable/ic_leaderboard"
+            android:title="Leaderboard" />
+        <item
+            android:id="@+id/nav_resources"
+            android:icon="@drawable/ic_resources"
+            android:title="Resources" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_my_profile"
+            android:title="My Profile" />
+    </group>
+
+    <!-- Footer-like items -->
+    <!-- Navigation View usually puts everything in a list. 
+         A true footer for "Terminate Session" can be applied via layout_gravity="bottom" in the layout file layout_width instead of menu.
+         But we can also add it here as a separate group.
+         However, for the specific red styling, a custom footer layout is better. -->
+    
+</menu>

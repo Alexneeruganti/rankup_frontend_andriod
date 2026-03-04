@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF"
+    android:layout_marginBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+            
+            <ImageView 
+                android:layout_width="32dp" 
+                android:layout_height="32dp" 
+                android:src="@drawable/ic_database" 
+                app:tint="#1C52E6" 
+                android:background="@drawable/bg_circle_translucent" 
+                android:backgroundTint="#E3F2FD" 
+                android:padding="6dp"/>
+                
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+                <EditText 
+                    android:id="@+id/etModuleName"
+                    android:layout_width="match_parent" 
+                    android:layout_height="wrap_content" 
+                    android:hint="Enter Module Name"
+                    android:textColor="#0D1B2A" 
+                    android:textStyle="bold|italic" 
+                    android:textSize="14sp"
+                    android:background="@null"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E0E0E0" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Total Questions -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOTAL QUESTIONS" android:textSize="8sp" android:textColor="#9E9E9E" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etModuleTotal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_edit_text_rounded"
+            android:hint="Total Questions"
+            android:inputType="number"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Difficulty Split -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DIFFICULTY SPLIT (EASY | MEDIUM | HARD)" android:textSize="8sp" android:textColor="#9E9E9E" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <EditText
+                android:id="@+id/etModuleEasy"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_rounded"
+                android:hint="Easy"
+                android:inputType="number"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+            <EditText
+                android:id="@+id/etModuleMedium"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_rounded"
+                android:hint="Med"
+                android:inputType="number"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+            <EditText
+                android:id="@+id/etModuleHard"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_rounded"
+                android:hint="Hard"
+                android:inputType="number"
+                android:gravity="center"
+                android:textSize="14sp"/>
+        </LinearLayout>
+        
+        <!-- Remove Button -->
+        <TextView
+            android:id="@+id/btnRemoveModule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REMOVE MODULE"
+            android:textColor="#D32F2F"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#F8F9FA"
+    android:visibility="gone"
+    android:id="@+id/layoutLocked">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_lock"
+        android:scaleType="fitCenter"
+        android:alpha="0.5"/>
+        
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard Locked"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#37474F"
+        android:layout_marginTop="24dp"/>
+        
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The leaderboard is currently hidden by the administrator. Please check back later."
+        android:textSize="14sp"
+        android:textColor="#78909C"
+        android:gravity="center"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

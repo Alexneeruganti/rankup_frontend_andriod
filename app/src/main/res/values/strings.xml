@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RankUp</string>
+    <string-array name="difficulty_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string-array name="language_types">
+        <item>Python</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>C++</item>
+    </string-array>
+</resources>

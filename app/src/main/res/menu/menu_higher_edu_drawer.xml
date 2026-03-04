@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="Notifications" />
+    <item
+        android:id="@+id/nav_gate_ielts"
+        android:icon="@drawable/ic_school"
+        android:title="GATE &amp; IELTS" />
+    <item
+        android:id="@+id/nav_academic_ranks"
+        android:icon="@drawable/ic_trophy"
+        android:title="Academic Ranks" />
+    <item
+        android:id="@+id/nav_library"
+        android:icon="@drawable/ic_book"
+        android:title="Library" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person"
+        android:title="My Profile" />
+</menu>

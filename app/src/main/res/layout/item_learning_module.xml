@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgModuleIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_notes"
+            android:background="@drawable/bg_circle_translucent"
+            android:backgroundTint="#E3F2FD"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/tvModuleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Structures Handbook"
+                android:textColor="#0D1B2A"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+                <TextView
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notes"
+                    android:textColor="#0D1B2A"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp"
+                    android:visibility="gone"/>
+                 <!-- Strikethrough effect not needed, just plain text -->
+                  <TextView
+                    android:id="@+id/tvModuleType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Handbook"
+                    android:textColor="#0D1B2A"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:alpha="0.7"/> 
+                    <!-- Using strikethrough as a visual style placeholder if desired or just bold -->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvModuleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RAVI • 2.4 MB"
+                android:textColor="#9E9E9E"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginTop="2dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDownload"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_download"
+            android:background="@drawable/bg_circle_translucent"
+            android:backgroundTint="#1C52E6"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+  
+    <!-- White Rounded Square Background -->
+    <path
+        android:pathData="M20,10 H80 A20,20 0 0 1 100,30 V70 A20,20 0 0 1 80,90 H20 A20,20 0 0 1 0,70 V30 A20,20 0 0 1 20,10 Z"
+        android:fillColor="#FFFFFF"/>
+
+    <!-- Blue Arrow Icon (centered) -->
+    <!-- Approximate arrow shape based on description: "Trend line" / "Arrow" -->
+    <path
+        android:pathData="M30,60 L45,45 L55,55 L70,30 M70,30 H55 M70,30 V45"
+        android:strokeColor="#1C52E6"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>
