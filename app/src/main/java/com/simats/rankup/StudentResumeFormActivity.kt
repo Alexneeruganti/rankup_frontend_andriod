@@ -38,6 +38,19 @@ class StudentResumeFormActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val emailStr = etEmail.text.toString().trim()
+            val phoneStr = etPhone.text.toString().trim()
+
+            if (!com.simats.rankup.utils.ValidationUtils.isValidEmail(emailStr)) {
+                Toast.makeText(this, "Valid @gmail.com email required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (phoneStr.isNotEmpty() && !com.simats.rankup.utils.ValidationUtils.isValidMobile(phoneStr)) {
+                Toast.makeText(this, "Valid 10-digit mobile number required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val intent = Intent(this, StudentResumeGeneratedActivity::class.java)
             intent.putExtra("TEMPLATE_ID", templateId)
             intent.putExtra("NAME", etFullName.text.toString())

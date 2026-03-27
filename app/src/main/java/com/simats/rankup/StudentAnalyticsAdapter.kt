@@ -51,17 +51,21 @@ class StudentAnalyticsAdapter(
         // Status Styling
         holder.tvStatus.text = student.status
         when (student.status) {
-            "In Progress" -> {
-                holder.tvStatus.setTextColor(Color.parseColor("#1E88E5"))
-                holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#E3F2FD"))
-            }
-            "Placed" -> {
+            "Excellent" -> {
                 holder.tvStatus.setTextColor(Color.parseColor("#00C853"))
                 holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#E8F5E9"))
             }
-            "Searching" -> {
-                holder.tvStatus.setTextColor(Color.parseColor("#FF6D00"))
-                holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFF3E0"))
+            "Good" -> {
+                holder.tvStatus.setTextColor(Color.parseColor("#2962FF"))
+                holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#E3F2FD"))
+            }
+            "Needs Improvement" -> {
+                holder.tvStatus.setTextColor(Color.parseColor("#D50000"))
+                holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFEBEE"))
+            }
+            "In Progress" -> {
+                holder.tvStatus.setTextColor(Color.parseColor("#1E88E5"))
+                holder.tvStatus.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#E3F2FD"))
             }
         }
 

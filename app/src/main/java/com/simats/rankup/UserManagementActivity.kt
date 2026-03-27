@@ -151,6 +151,10 @@ class UserManagementActivity : AppCompatActivity() {
         btnSave.setOnClickListener {
             val newPassword = etNewPassword.text.toString().trim()
             if (newPassword.isNotEmpty()) {
+                if (!com.simats.rankup.utils.ValidationUtils.isValidPassword(newPassword)) {
+                    etNewPassword.error = "Password must be >= 8 chars, 1 uppercase, 1 number, 1 symbol"
+                    return@setOnClickListener
+                }
                 val request = AdminResetPasswordRequest(newPassword)
                 BackendApiService.api.adminResetPassword(user.id, request).enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {

@@ -60,7 +60,34 @@ class LearningAdapter(private val modules: List<LearningModule>) :
             holder.tvDetails.setTextColor(android.graphics.Color.parseColor("#9E9E9E"))
             holder.btnDownload.setImageResource(R.drawable.ic_download)
             holder.btnDownload.setOnClickListener {
-                android.widget.Toast.makeText(holder.itemView.context, "Downloading PDF...", android.widget.Toast.LENGTH_SHORT).show()
+                if (!module.url.isNullOrEmpty()) {
+                    android.widget.Toast.makeText(holder.itemView.context, "Downloading PDF...", android.widget.Toast.LENGTH_SHORT).show()
+                    try {
+                        val uri = android.net.Uri.parse(module.url)
+                        
+                        // 1. Download file using DownloadManager
+                        val request = android.app.DownloadManager.Request(uri)
+                        request.setTitle(module.title)
+                        request.setDescription("Downloading ${module.title}")
+                        request.setNotificationVisibility(android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                        // Sanitize filename
+                        val fileName = module.title.replace("[^a-zA-Z0-9.-]".toRegex(), "_") + ".pdf"
+                        request.setDestinationInExternalPublicDir(android.os.Environment.DIRECTORY_DOWNLOADS, fileName)
+                        
+                        val manager = holder.itemView.context.getSystemService(android.content.Context.DOWNLOAD_SERVICE) as android.app.DownloadManager
+                        manager.enqueue(request)
+                        
+                        // 2. Open file immediately in browser/viewer
+                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, uri)
+                        holder.itemView.context.startActivity(intent)
+                        
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        android.widget.Toast.makeText(holder.itemView.context, "Failed to download or open: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    android.widget.Toast.makeText(holder.itemView.context, "No Document Link Provided", android.widget.Toast.LENGTH_SHORT).show()
+                }
             }
         }
         

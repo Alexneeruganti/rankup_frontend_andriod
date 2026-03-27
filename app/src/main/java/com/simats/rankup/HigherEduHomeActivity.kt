@@ -34,7 +34,9 @@ class HigherEduHomeActivity : ComponentActivity() {
 
             navView.setNavigationItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.nav_dashboard -> drawerLayout.closeDrawer(GravityCompat.START)
+                    R.id.nav_dashboard -> {
+                        // Already on dashboard, just close drawer
+                    }
                     
                     // Sidebar Navigation Logic
                     R.id.nav_notifications -> startActivity(Intent(this, HigherEduNotificationsActivity::class.java))

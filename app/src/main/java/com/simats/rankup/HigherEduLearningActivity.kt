@@ -138,8 +138,10 @@ class HigherEduLearningActivity : AppCompatActivity() {
     }
 
     private fun loadNotes() {
-        // Fetch Notes from API for Higher Education
-        com.simats.rankup.network.BackendApiService.api.getResources("Higher Education").enqueue(object : retrofit2.Callback<com.simats.rankup.network.GetResourcesResponse> {
+        val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val studentId = sharedPref.getInt("USER_ID", -1)
+        
+        com.simats.rankup.network.BackendApiService.api.getResources("Higher Education", if (studentId != -1) studentId else null).enqueue(object : retrofit2.Callback<com.simats.rankup.network.GetResourcesResponse> {
             override fun onResponse(
                 call: retrofit2.Call<com.simats.rankup.network.GetResourcesResponse>,
                 response: retrofit2.Response<com.simats.rankup.network.GetResourcesResponse>
@@ -172,8 +174,10 @@ class HigherEduLearningActivity : AppCompatActivity() {
     }
 
     private fun loadLectures() {
-        // Fetch Video Links from API for Higher Education
-        com.simats.rankup.network.BackendApiService.api.getResources("Higher Education").enqueue(object : retrofit2.Callback<com.simats.rankup.network.GetResourcesResponse> {
+        val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val studentId = sharedPref.getInt("USER_ID", -1)
+        
+        com.simats.rankup.network.BackendApiService.api.getResources("Higher Education", if (studentId != -1) studentId else null).enqueue(object : retrofit2.Callback<com.simats.rankup.network.GetResourcesResponse> {
             override fun onResponse(
                 call: retrofit2.Call<com.simats.rankup.network.GetResourcesResponse>,
                 response: retrofit2.Response<com.simats.rankup.network.GetResourcesResponse>

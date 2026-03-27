@@ -15,7 +15,7 @@ object StudentManager {
     )
 
     val classRequests = mutableListOf(
-        StudentRequest("Priya Sharma", "IT202305", "Information Technology", "2nd Year", "CLASS"),
+        StudentRequest("User Name", "IT202305", "Information Technology", "2nd Year", "CLASS"),
         StudentRequest("Rahul Varma", "IT202308", "Information Technology", "2nd Year", "CLASS")
     )
 

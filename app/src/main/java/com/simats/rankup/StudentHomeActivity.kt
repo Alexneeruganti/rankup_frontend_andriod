@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.cardview.widget.CardView
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -20,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class StudentHomeActivity : ComponentActivity() {
+class StudentHomeActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -48,9 +49,32 @@ class StudentHomeActivity : ComponentActivity() {
 
             navView.setNavigationItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.nav_dashboard -> Toast.makeText(this, "Dashboard", Toast.LENGTH_SHORT).show()
-                    R.id.nav_find_faculty -> Toast.makeText(this, "Find Faculty", Toast.LENGTH_SHORT).show()
-
+                    R.id.nav_dashboard -> {
+                        // Already on dashboard, just close drawer
+                    }
+                    R.id.nav_find_faculty -> {
+                        startActivity(Intent(this, MentorsActivity::class.java))
+                    }
+                    R.id.nav_notifications -> {
+                        val intent = Intent(this, NotificationsActivity::class.java)
+                        intent.putExtra("USER_TYPE", "student")
+                        startActivity(intent)
+                    }
+                    R.id.nav_coding -> {
+                        startActivity(Intent(this, StudentCodingActivity::class.java))
+                    }
+                    R.id.nav_communication -> {
+                        startActivity(Intent(this, CommunicationActivity::class.java))
+                    }
+                    R.id.nav_leaderboard -> {
+                        startActivity(Intent(this, RankingsActivity::class.java))
+                    }
+                    R.id.nav_resources -> {
+                        startActivity(Intent(this, LearningActivity::class.java))
+                    }
+                    R.id.nav_profile -> {
+                        startActivity(Intent(this, ProfileActivity::class.java))
+                    }
                     else -> Toast.makeText(this, "${menuItem.title} Clicked", Toast.LENGTH_SHORT).show()
                 }
                 drawerLayout.closeDrawer(GravityCompat.START)
@@ -94,9 +118,8 @@ class StudentHomeActivity : ComponentActivity() {
                 startActivity(intent)
             }
             
-            // Handle Logout Click from footer include
-            val navFooter = findViewById<View>(R.id.navFooter)
-            val btnLogoutSidebar = navFooter?.findViewById<View>(R.id.btnTerminateSession) ?: findViewById(R.id.btnTerminateSession)
+            // Handle Logout Click from drawer footer
+            val btnLogoutSidebar = findViewById<View>(R.id.btnTerminateSession)
             
             btnLogoutSidebar?.setOnClickListener {
                 Toast.makeText(this, "Terminating Session...", Toast.LENGTH_SHORT).show()

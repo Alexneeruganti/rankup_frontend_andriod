@@ -134,7 +134,8 @@ class HigherEduRankingsActivity : AppCompatActivity() {
                                 rank = i + 1,
                                 name = entry.name,
                                 department = "Aspirant", 
-                                points = entry.score
+                                points = entry.score,
+                                profilePic = entry.profile_pic
                             )
                         )
                     }

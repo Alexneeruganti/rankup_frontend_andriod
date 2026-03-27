@@ -27,6 +27,11 @@ class HigherEduLoginActivity : ComponentActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
+        val tvCreateAccount = findViewById<TextView>(R.id.tvCreateAccount)
+
+        tvCreateAccount.setOnClickListener {
+            startActivity(Intent(this, StudentSignUpActivity::class.java))
+        }
 
         // Password Visibility Toggle
         etPassword.setOnTouchListener { v, event ->
@@ -73,6 +78,13 @@ class HigherEduLoginActivity : ComponentActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
+                        val role = loginResponse?.role ?: "Student"
+
+                        if (role.equals("Placement Student", ignoreCase = true) || role.equals("Student", ignoreCase = true)) {
+                            Toast.makeText(this@HigherEduLoginActivity, "Access Denied: Please use the Placement Login portal.", Toast.LENGTH_LONG).show()
+                            return
+                        }
+
                         Toast.makeText(this@HigherEduLoginActivity, loginResponse?.message ?: "Login Successful", Toast.LENGTH_SHORT).show()
                         
                         // Save to SharedPreferences
@@ -86,11 +98,20 @@ class HigherEduLoginActivity : ComponentActivity() {
                         }
 
                         // Navigate based on user role
-                        val role = loginResponse?.role ?: "Student"
                         val intent = when {
-                            role.equals("Admin", ignoreCase = true) -> Intent(this@HigherEduLoginActivity, AdminDashboardActivity::class.java)
-                            role.equals("Faculty", ignoreCase = true) -> Intent(this@HigherEduLoginActivity, FacultyHomeActivity::class.java)
-                            else -> Intent(this@HigherEduLoginActivity, HigherEduHomeActivity::class.java)
+                            role.equals("Admin", ignoreCase = true) -> {
+                                Intent(this@HigherEduLoginActivity, AdminDashboardActivity::class.java)
+                            }
+                            role.equals("Faculty", ignoreCase = true) -> {
+                                Intent(this@HigherEduLoginActivity, SubscriptionActivity::class.java).apply {
+                                    putExtra("NEXT_ACTIVITY", FacultyHomeActivity::class.java.name)
+                                }
+                            }
+                            else -> {
+                                Intent(this@HigherEduLoginActivity, SubscriptionActivity::class.java).apply {
+                                    putExtra("NEXT_ACTIVITY", HigherEduHomeActivity::class.java.name)
+                                }
+                            }
                         }
 
                         startActivity(intent)

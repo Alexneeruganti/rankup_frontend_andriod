@@ -16,10 +16,31 @@ class StudentTestResultActivity : AppCompatActivity() {
         val total = intent.getIntExtra("TOTAL", 0)
 
         val tvScoreDisplay = findViewById<TextView>(R.id.tvScoreDisplay)
+        val tvCongrats = findViewById<TextView>(R.id.tvCongrats)
+        
         tvScoreDisplay.text = "$score / $total"
+        
+        if (total > 0) {
+            val percentage = (score.toDouble() / total) * 100
+            if (percentage >= 80) {
+                tvCongrats.text = "EXCELLENT WORK!"
+            } else if (percentage >= 50) {
+                tvCongrats.text = "GOOD JOB!"
+            } else {
+                tvCongrats.text = "KEEP PRACTICING!"
+            }
+        } else {
+            tvCongrats.text = "TEST COMPLETED!"
+        }
 
         findViewById<Button>(R.id.btnBackToHome).setOnClickListener {
             navigateBackToPortal()
+        }
+
+        findViewById<Button>(R.id.btnViewLeaderboard).setOnClickListener {
+            val intentLeaderboard = Intent(this, RankingsActivity::class.java)
+            startActivity(intentLeaderboard)
+            finish()
         }
     }
     

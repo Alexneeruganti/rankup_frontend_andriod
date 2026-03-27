@@ -53,8 +53,8 @@ class FacultyResumeReviewDetailActivity : AppCompatActivity() {
         tvDepartmentDetail.text = request.department ?: "Department"
 
         btnViewPdf.setOnClickListener {
-            val url = request.resume_url
-            if (url.isNotEmpty()) {
+            val url = BackendApiService.getFullUrl(request.resume_url)
+            if (!url.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(intent)
             } else {

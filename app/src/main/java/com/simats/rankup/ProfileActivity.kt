@@ -222,7 +222,7 @@ class ProfileActivity : AppCompatActivity() {
                     if (!profile.profile_pic.isNullOrEmpty()) {
                         val imgProfile = findViewById<ImageView>(R.id.imgProfile)
                         Glide.with(this@ProfileActivity)
-                            .load(profile.profile_pic)
+                            .load(BackendApiService.getFullUrl(profile.profile_pic))
                             .placeholder(R.drawable.ic_profile)
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true)
@@ -260,7 +260,7 @@ class ProfileActivity : AppCompatActivity() {
                             view.findViewById<TextView>(R.id.tvMentorDept).text = "DEPARTMENT: ${mentor.department}"
 
                             Glide.with(this@ProfileActivity)
-                                .load(mentor.profile_pic)
+                                .load(BackendApiService.getFullUrl(mentor.profile_pic))
                                 .placeholder(R.drawable.ic_profile)
                                 .into(view.findViewById(R.id.imgMentorProfile))
 
@@ -392,7 +392,7 @@ class ProfileActivity : AppCompatActivity() {
                         if (!newUrl.isNullOrEmpty()) {
                             val imgProfile = findViewById<ImageView>(R.id.imgProfile)
                             Glide.with(this@ProfileActivity)
-                                .load(newUrl)
+                                .load(BackendApiService.getFullUrl(newUrl))
                                 .placeholder(R.drawable.ic_profile)
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.simats.rankup.network.BackendApiService
+import com.simats.rankup.network.ApiResponse
 import com.simats.rankup.network.GetCompanyQuestionsResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,7 +50,7 @@ class FacultyCompanyQuestionsActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val apiQuestions = response.body()?.questions ?: emptyList()
                     val questions = apiQuestions.map { 
-                        CompanyQuestion(it.company, it.title, it.difficulty, it.description, it.constraints, it.input_format)
+                        CompanyQuestion(it.id, it.company, it.title, it.difficulty, it.description, it.constraints, it.input_format)
                     }
                     
                     recyclerView.adapter = CompanyQuestionAdapter(
@@ -59,7 +60,19 @@ class FacultyCompanyQuestionsActivity : AppCompatActivity() {
                             Toast.makeText(this@FacultyCompanyQuestionsActivity, "Viewing: ${question.title}", Toast.LENGTH_SHORT).show()
                         },
                         onDelete = { question ->
-                            Toast.makeText(this@FacultyCompanyQuestionsActivity, "Backend delete coming soon", Toast.LENGTH_SHORT).show()
+                            BackendApiService.api.deleteCompanyQuestion(question.id).enqueue(object : Callback<ApiResponse> {
+                                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                                    if (response.isSuccessful) {
+                                        Toast.makeText(this@FacultyCompanyQuestionsActivity, "Question Deleted", Toast.LENGTH_SHORT).show()
+                                        fetchQuestions() // Refresh list
+                                    } else {
+                                        Toast.makeText(this@FacultyCompanyQuestionsActivity, "Delete Failed", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                                    Toast.makeText(this@FacultyCompanyQuestionsActivity, "Network Error", Toast.LENGTH_SHORT).show()
+                                }
+                            })
                         }
                     )
                 } else {

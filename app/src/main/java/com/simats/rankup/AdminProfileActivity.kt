@@ -74,7 +74,7 @@ class AdminProfileActivity : AppCompatActivity() {
                     }
 
                     if (!profile.profile_pic.isNullOrEmpty()) {
-                        val fullUrl = if (profile.profile_pic!!.startsWith("http")) profile.profile_pic else "${BackendApiService.BASE_URL.removeSuffix("/")}${profile.profile_pic}"
+                        val fullUrl = BackendApiService.getFullUrl(profile.profile_pic)
                         com.bumptech.glide.Glide.with(this@AdminProfileActivity)
                             .load(fullUrl)
                             .placeholder(R.drawable.ic_profile_placeholder)
@@ -167,7 +167,7 @@ class AdminProfileActivity : AppCompatActivity() {
                         val newUrl = response.body()?.url
                         if (!newUrl.isNullOrEmpty()) {
                             val imgProfile = findViewById<ImageView>(R.id.imgAdminProfile)
-                            val fullUrl = if (newUrl.startsWith("http")) newUrl else "${BackendApiService.BASE_URL.removeSuffix("/")}$newUrl"
+                            val fullUrl = BackendApiService.getFullUrl(newUrl)
                             com.bumptech.glide.Glide.with(this@AdminProfileActivity)
                                 .load(fullUrl)
                                 .placeholder(R.drawable.ic_profile_placeholder)

@@ -16,51 +16,56 @@ class StudentAnalyticsActivity : AppCompatActivity() {
             finish()
         }
 
-        fetchStudentStats()
-        setupList()
+        fetchClassAnalytics()
     }
 
-    private fun fetchStudentStats() {
+    private fun fetchClassAnalytics() {
         val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
-        val userId = sharedPref.getInt("USER_ID", -1)
-        if (userId == -1) return
+        val facultyId = sharedPref.getInt("USER_ID", -1)
+        if (facultyId == -1) {
+             android.widget.Toast.makeText(this, "Session Expired", android.widget.Toast.LENGTH_SHORT).show()
+             return
+        }
 
-        com.simats.rankup.network.BackendApiService.api.getStudentStats(userId).enqueue(object : retrofit2.Callback<com.simats.rankup.network.StudentStatsResponse> {
-            override fun onResponse(call: retrofit2.Call<com.simats.rankup.network.StudentStatsResponse>, response: retrofit2.Response<com.simats.rankup.network.StudentStatsResponse>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val stats = response.body()!!
-                    findViewById<android.widget.TextView>(R.id.tvOverallScore).text = "${stats.average_score.toInt()}%"
-                    findViewById<android.widget.TextView>(R.id.tvAptitudeScoreHeader).text = "${stats.aptitude_score.toInt()}%"
-                    findViewById<android.widget.TextView>(R.id.tvCodingScoreHeader).text = "${stats.coding_score.toInt()}%"
-                }
-            }
-
-            override fun onFailure(call: retrofit2.Call<com.simats.rankup.network.StudentStatsResponse>, t: Throwable) {
-                // Ignore for now
-            }
-        })
-    }
-
-    private fun setupList() {
         val rvAnalytics = findViewById<RecyclerView>(R.id.rvAnalytics)
         rvAnalytics.layoutManager = LinearLayoutManager(this)
 
-        // Get accepted class students from StudentManager
-        val acceptedStudents = StudentManager.myClass
-        
-        // Map to AnalyticsStudent with mock stats (since StudentRequest doesn't have scores yet)
-        val analyticsData = acceptedStudents.map { student ->
-            StudentAnalyticsAdapter.AnalyticsStudent(
-                name = student.name,
-                regNo = student.regNo,
-                status = "In Progress", // Default status
-                trend = "IMPROVING",   // Default trend
-                aptitudeScore = (60..95).random(), // Mock score
-                codingScore = (50..98).random()    // Mock score
-            )
-        }
+        com.simats.rankup.network.BackendApiService.api.getClassStudents(facultyId).enqueue(object : retrofit2.Callback<com.simats.rankup.network.ClassStudentsResponse> {
+            override fun onResponse(call: retrofit2.Call<com.simats.rankup.network.ClassStudentsResponse>, response: retrofit2.Response<com.simats.rankup.network.ClassStudentsResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val students = response.body()!!.students ?: emptyList()
+                    
+                    // Map to AnalyticsStudent using real scores from backend
+                    val analyticsData = students.map { student ->
+                        StudentAnalyticsAdapter.AnalyticsStudent(
+                            name = student.student_name,
+                            regNo = student.register_number ?: "N/A",
+                            status = if (student.overall_score >= 75) "Excellent" else if (student.overall_score >= 50) "Good" else "Needs Improvement",
+                            trend = if (student.overall_score >= 60) "IMPROVING" else "STABLE",
+                            aptitudeScore = student.aptitude_score.toInt(),
+                            codingScore = student.coding_score.toInt()
+                        )
+                    }
 
-        val adapter = StudentAnalyticsAdapter(analyticsData)
-        rvAnalytics.adapter = adapter
+                    val adapter = StudentAnalyticsAdapter(analyticsData)
+                    rvAnalytics.adapter = adapter
+                    
+                    // Update header average if needed (optional enrichment)
+                    if (analyticsData.isNotEmpty()) {
+                        val avgOverall = analyticsData.map { it.aptitudeScore + it.codingScore }.average() / 2
+                        val avgAptitude = analyticsData.map { it.aptitudeScore }.average()
+                        val avgCoding = analyticsData.map { it.codingScore }.average()
+                        
+                        findViewById<android.widget.TextView>(R.id.tvOverallScore).text = "${avgOverall.toInt()}%"
+                        findViewById<android.widget.TextView>(R.id.tvAptitudeScoreHeader).text = "${avgAptitude.toInt()}%"
+                        findViewById<android.widget.TextView>(R.id.tvCodingScoreHeader).text = "${avgCoding.toInt()}%"
+                    }
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<com.simats.rankup.network.ClassStudentsResponse>, t: Throwable) {
+                android.widget.Toast.makeText(this@StudentAnalyticsActivity, "Failed to load analytics", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

@@ -1,0 +1,29 @@
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:processDebugNavigationResources
+> Task :app:parseDebugLocalResources
+> Task :app:generateDebugRFile
+
+> Task :app:compileDebugKotlin
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/HigherEduLoginActivity.kt:57:13 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/HigherEduLoginActivity.kt:113:25 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/HigherEduLoginActivity.kt:135:17 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/HigherEduLoginActivity.kt:155:15 'fun onBackPressed(): Unit' is deprecated. This method has been deprecated in favor of using the
+      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.
+      The OnBackPressedDispatcher controls how back button events are dispatched
+      to one or more {@link OnBackPressedCallback} objects.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/HigherEduLoginActivity.kt:156:9 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/PlacementLoginActivity.kt:57:13 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/PlacementLoginActivity.kt:118:25 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/PlacementLoginActivity.kt:140:17 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/PlacementLoginActivity.kt:160:15 'fun onBackPressed(): Unit' is deprecated. This method has been deprecated in favor of using the
+      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.
+      The OnBackPressedDispatcher controls how back button events are dispatched
+      to one or more {@link OnBackPressedCallback} objects.
+w: file:///C:/Users/Dell/AndroidStudioProjects/RankUp/app/src/main/java/com/simats/rankup/PlacementLoginActivity.kt:161:9 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+
+BUILD SUCCESSFUL in 7s
+6 actionable tasks: 6 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.3.1/userguide/configuration_cache_enabling.html

@@ -256,6 +256,16 @@
         <activity android:name=".CommunicationResultActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.RankUp" />
+            
+        <activity
+            android:name=".SubscriptionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RankUp" />
+
+        <activity
+            android:name=".StudentSignUpActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -55,8 +55,8 @@ class ResetPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             
-            if (pass1.length < 6) {
-                etNewPassword.error = "Password must be at least 6 characters"
+            if (!com.simats.rankup.utils.ValidationUtils.isValidPassword(pass1)) {
+                etNewPassword.error = "Password must be >= 8 chars, 1 uppercase, 1 number, 1 symbol"
                 return@setOnClickListener
             }
 

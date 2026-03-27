@@ -12,28 +12,30 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
-class AddUserActivity : AppCompatActivity() {
+class StudentSignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_user)
+        setContentView(R.layout.activity_student_sign_up)
 
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             finish()
         }
 
-        val roles = arrayOf("Student", "Placement Student", "Higher Education", "Faculty")
+        // Only allow students to create placement or higher education accounts
+        val roles = arrayOf("Placement Student", "Higher Education")
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, roles)
-        findViewById<AutoCompleteTextView>(R.id.spinRole).setAdapter(adapter)
+        val spinRole = findViewById<AutoCompleteTextView>(R.id.spinRole)
+        spinRole.setAdapter(adapter)
 
         animateEntry()
 
-        findViewById<Button>(R.id.btnSaveUser).setOnClickListener {
-            saveUser()
+        findViewById<Button>(R.id.btnRegister).setOnClickListener {
+            registerStudent()
         }
     }
 
-    private fun saveUser() {
+    private fun registerStudent() {
         val name = findViewById<TextInputEditText>(R.id.etName).text.toString().trim()
         val id = findViewById<TextInputEditText>(R.id.etId).text.toString().trim()
         val email = findViewById<TextInputEditText>(R.id.etEmail).text.toString().trim()
@@ -58,10 +60,9 @@ class AddUserActivity : AppCompatActivity() {
             return
         }
 
-        // Show a temporary loading indicator (e.g., disable button)
-        val btnSave = findViewById<Button>(R.id.btnSaveUser)
+        val btnSave = findViewById<Button>(R.id.btnRegister)
         btnSave.isEnabled = false
-        btnSave.text = "Saving..."
+        btnSave.text = "Registering..."
 
         val request = com.simats.rankup.network.AddUserRequest(
             id = id,
@@ -80,28 +81,27 @@ class AddUserActivity : AppCompatActivity() {
                 response: retrofit2.Response<com.simats.rankup.network.ApiResponse>
             ) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@AddUserActivity, response.body()?.message ?: "$role Added Successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@StudentSignUpActivity, "Registration Successful! Please login.", Toast.LENGTH_LONG).show()
                     finish()
                 } else {
                     btnSave.isEnabled = true
-                    btnSave.text = "Save User"
+                    btnSave.text = "Register"
                     
-                    // Try to parse the error message from the backend
                     try {
                         val errorJson = response.errorBody()?.string()
                         val errorObject = org.json.JSONObject(errorJson ?: "{}")
-                        val errorMsg = errorObject.optString("error", "Failed to add user")
-                        Toast.makeText(this@AddUserActivity, "Error: $errorMsg", Toast.LENGTH_LONG).show()
+                        val errorMsg = errorObject.optString("error", "Failed to register")
+                        Toast.makeText(this@StudentSignUpActivity, "Error: $errorMsg", Toast.LENGTH_LONG).show()
                     } catch (e: Exception) {
-                        Toast.makeText(this@AddUserActivity, "Error: User exists or invalid data", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@StudentSignUpActivity, "Error: User exists or invalid data", Toast.LENGTH_LONG).show()
                     }
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<com.simats.rankup.network.ApiResponse>, t: Throwable) {
                 btnSave.isEnabled = true
-                btnSave.text = "Save User"
-                Toast.makeText(this@AddUserActivity, "Network Error: ${t.message}", Toast.LENGTH_LONG).show()
+                btnSave.text = "Register"
+                Toast.makeText(this@StudentSignUpActivity, "Network Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

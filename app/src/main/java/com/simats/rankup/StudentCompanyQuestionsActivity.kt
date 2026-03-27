@@ -50,7 +50,7 @@ class StudentCompanyQuestionsActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val apiQuestions = response.body()?.questions ?: emptyList()
                     val questions = apiQuestions.map { 
-                        CompanyQuestion(it.company, it.title, it.difficulty, it.description, it.constraints, it.input_format)
+                        CompanyQuestion(it.id, it.company, it.title, it.difficulty, it.description, it.constraints, it.input_format)
                     }
                     
                     recyclerView.adapter = CompanyQuestionAdapter(
@@ -97,6 +97,7 @@ class StudentCompanyQuestionsActivity : AppCompatActivity() {
 }
 
 data class CompanyQuestion(
+    val id: Int,
     val company: String,
     val title: String,
     val difficulty: String,

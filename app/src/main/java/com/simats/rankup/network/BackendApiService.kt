@@ -77,7 +77,10 @@ data class AssignedStudent(
     val student_name: String,
     val department: String,
     val register_number: String?,
-    val joined_at: String
+    val joined_at: String,
+    val overall_score: Double = 0.0,
+    val aptitude_score: Double = 0.0,
+    val coding_score: Double = 0.0
 )
 
 data class MenteesResponse(
@@ -311,7 +314,8 @@ data class LeaderboardEntry(
     val student_id: Int,
     val name: String,
     val register_number: String,
-    val score: Int
+    val score: Int,
+    val profile_pic: String?
 )
 
 data class LeaderboardResponse(
@@ -474,7 +478,10 @@ interface BackendApi {
     fun uploadFile(@retrofit2.http.Part file: okhttp3.MultipartBody.Part): Call<FileUploadResponse>
 
     @retrofit2.http.GET("get-resources")
-    fun getResources(@retrofit2.http.Query("category") category: String? = null): Call<GetResourcesResponse>
+    fun getResources(
+        @retrofit2.http.Query("category") category: String? = null,
+        @retrofit2.http.Query("student_id") studentId: Int? = null
+    ): Call<GetResourcesResponse>
 
     @retrofit2.http.DELETE("delete-resource/{resource_id}")
     fun deleteResource(@retrofit2.http.Path("resource_id") resourceId: Int): Call<ApiResponse>
@@ -508,6 +515,9 @@ interface BackendApi {
 
     @retrofit2.http.GET("get-company-questions")
     fun getCompanyQuestions(): Call<GetCompanyQuestionsResponse>
+
+    @retrofit2.http.DELETE("delete-company-question/{question_id}")
+    fun deleteCompanyQuestion(@retrofit2.http.Path("question_id") questionId: Int): Call<ApiResponse>
 
     @POST("generate-mock-test")
     fun generateMockTest(@Body request: GenerateTestRequest): Call<GenerateTestResponse>
@@ -643,8 +653,7 @@ data class GeneratedAcademicTestResponse(
 
 object BackendApiService {
     // Note: 10.0.2.2 is the default IP for Android Emulator to connect to localhost on the host machine.
-    // Replace with your computer's local Wi-Fi IP (e.g., "192.168.x.x") if testing on a physical device.
-    const val BASE_URL = "http://10.63.246.168:5000/"
+    const val BASE_URL = "http://180.235.121.253:8098/"
 
     private val okHttpClient = okhttp3.OkHttpClient.Builder()
         .connectTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
@@ -659,5 +668,13 @@ object BackendApiService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(BackendApi::class.java)
+    }
+
+    fun getFullUrl(url: String?): String? {
+        if (url.isNullOrEmpty()) return null
+        if (url.startsWith("http://") || url.startsWith("https://")) return url
+        val cleanUrl = if (url.startsWith("/")) url.substring(1) else url
+        val baseUrl = if (BASE_URL.endsWith("/")) BASE_URL else "$BASE_URL/"
+        return baseUrl + cleanUrl
     }
 }

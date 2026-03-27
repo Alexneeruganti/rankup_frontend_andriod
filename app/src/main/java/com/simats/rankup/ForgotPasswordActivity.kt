@@ -45,6 +45,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (!com.simats.rankup.utils.ValidationUtils.isValidEmail(email)) {
+                etEmail.error = "Valid @gmail.com address required"
+                return@setOnClickListener
+            }
+
             // Show loading
             btnSendOtp.isEnabled = false
             progressBar.visibility = View.VISIBLE

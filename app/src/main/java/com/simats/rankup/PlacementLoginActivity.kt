@@ -27,6 +27,11 @@ class PlacementLoginActivity : ComponentActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
+        val tvCreateAccount = findViewById<TextView>(R.id.tvCreateAccount)
+
+        tvCreateAccount.setOnClickListener {
+            startActivity(Intent(this, StudentSignUpActivity::class.java))
+        }
 
         // Password Visibility Toggle
         etPassword.setOnTouchListener { v, event ->
@@ -69,15 +74,6 @@ class PlacementLoginActivity : ComponentActivity() {
                 return@setOnClickListener
             }
 
-            if (!(id.matches(Regex("^\\d{9}$")) || 
-                  id.matches(Regex("^(?i)sse\\d{6}$")) || 
-                  id.matches(Regex("^(?i)admin\\d{4}$")))) {
-                Toast.makeText(this, "Invalid ID format (e.g. 123456789, sse123456, admin1234)", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-
-
             // Backend API Call
             val request = PlacementLoginRequest(id, password)
             BackendApiService.api.placementLogin(request).enqueue(object : Callback<PlacementLoginResponse> {
@@ -87,6 +83,13 @@ class PlacementLoginActivity : ComponentActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
+                        val role = loginResponse?.role ?: "Student"
+
+                        if (role.equals("Higher Education", ignoreCase = true) || role.equals("Higher Education Student", ignoreCase = true)) {
+                            Toast.makeText(this@PlacementLoginActivity, "Access Denied: Please use the Higher Education Login portal.", Toast.LENGTH_LONG).show()
+                            return
+                        }
+
                         Toast.makeText(this@PlacementLoginActivity, loginResponse?.message ?: "Login Successful", Toast.LENGTH_SHORT).show()
                         
                         // Save to SharedPreferences
@@ -100,11 +103,20 @@ class PlacementLoginActivity : ComponentActivity() {
                         }
 
                         // Navigate based on user role returned by the backend
-                        val role = loginResponse?.role ?: "Student"
                         val intent = when {
-                            role.equals("Admin", ignoreCase = true) -> Intent(this@PlacementLoginActivity, AdminDashboardActivity::class.java)
-                            role.equals("Faculty", ignoreCase = true) -> Intent(this@PlacementLoginActivity, FacultyHomeActivity::class.java)
-                            else -> Intent(this@PlacementLoginActivity, StudentHomeActivity::class.java) // Default to Student
+                            role.equals("Admin", ignoreCase = true) -> {
+                                Intent(this@PlacementLoginActivity, AdminDashboardActivity::class.java)
+                            }
+                            role.equals("Faculty", ignoreCase = true) -> {
+                                Intent(this@PlacementLoginActivity, SubscriptionActivity::class.java).apply {
+                                    putExtra("NEXT_ACTIVITY", FacultyHomeActivity::class.java.name)
+                                }
+                            }
+                            else -> {
+                                Intent(this@PlacementLoginActivity, SubscriptionActivity::class.java).apply {
+                                    putExtra("NEXT_ACTIVITY", StudentHomeActivity::class.java.name)
+                                }
+                            }
                         }
 
                         startActivity(intent)

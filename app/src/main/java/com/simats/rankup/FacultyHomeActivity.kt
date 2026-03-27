@@ -48,11 +48,14 @@ class FacultyHomeActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_dashboard -> {
-                    Toast.makeText(this, "Dashboard Selected", Toast.LENGTH_SHORT).show()
-                    drawerLayout.closeDrawer(GravityCompat.START)
+                    // Already on dashboard, just close drawer
                 }
                 R.id.nav_upload_content -> {
                     startActivity(Intent(this, FacultyUploadContentActivity::class.java))
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                }
+                R.id.nav_higher_ed -> {
+                    startActivity(Intent(this, FacultyAcademicForgeActivity::class.java))
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_create_test -> {
@@ -174,7 +177,7 @@ class FacultyHomeActivity : AppCompatActivity() {
                     findViewById<android.widget.TextView>(R.id.tvFacultyDept).text = profile.department?.uppercase() ?: "DEPT OF COMP SCIENCE"
                     
                     if (!profile.profile_pic.isNullOrEmpty()) {
-                        val fullUrl = if (profile.profile_pic!!.startsWith("http")) profile.profile_pic else "${com.simats.rankup.network.BackendApiService.BASE_URL.removeSuffix("/")}${profile.profile_pic}"
+                        val fullUrl = com.simats.rankup.network.BackendApiService.getFullUrl(profile.profile_pic)
                         com.bumptech.glide.Glide.with(this@FacultyHomeActivity)
                             .load(fullUrl)
                             .circleCrop()

@@ -36,17 +36,10 @@ object LeaderboardManager {
             Gson().fromJson(json, type)
         } else {
             // Default Data
+            val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+            val userName = sharedPref.getString("USER_NAME", "User Name") ?: "User Name"
             val defaultData = listOf(
-                StudentRank(1, "Ananya Singh", "CSE", 3200),
-                StudentRank(2, "Rahul Kumar", "CSE", 2850),
-                StudentRank(3, "Vikram Patel", "IT", 2640),
-                StudentRank(4, "Priya Sharma", "CSE", 2480),
-                StudentRank(5, "Arjun Mehta", "IT", 2390),
-                StudentRank(6, "Sneha Reddy", "CSE", 2280),
-                StudentRank(7, "Rohan Gupta", "Mech", 2150),
-                StudentRank(8, "Kavya Iyer", "IT", 2080),
-                StudentRank(9, "Aditya Verma", "Civil", 1950),
-                StudentRank(10, "Ishita Desai", "CSE", 1870)
+                StudentRank(1, userName, "Student", 0)
             )
             saveRankings(context, defaultData)
             defaultData
@@ -60,25 +53,21 @@ object LeaderboardManager {
     }
 
     fun resetRankings(context: Context) {
-        // Simulating a reset by setting points to 0 for demo purposes, 
-        // or re-generating a "New Semester" list. 
-        // For visual effect, let's just clear the points or shuffle.
-        // Let's create an empty/initial state.
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val userName = sharedPref.getString("USER_NAME", "User Name") ?: "User Name"
         
         val resetData = listOf(
-             StudentRank(1, "Player 1", "CSE", 0),
-             StudentRank(2, "Player 2", "IT", 0),
-             StudentRank(3, "Player 3", "ECE", 0)
+             StudentRank(1, userName, "Student", 0)
         )
         saveRankings(context, resetData)
     }
 
     fun resetMonthlyRankings(context: Context) {
-        // Similar to reset for now
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val userName = sharedPref.getString("USER_NAME", "User Name") ?: "User Name"
+        
         val resetData = listOf(
-             StudentRank(1, "Ananya Singh", "CSE", 50),
-             StudentRank(2, "Rahul Kumar", "CSE", 40),
-             StudentRank(3, "Vikram Patel", "IT", 30)
+             StudentRank(1, userName, "Student", 0)
         )
         saveRankings(context, resetData)
     }

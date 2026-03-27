@@ -62,7 +62,7 @@ class FacultyProfileActivity : AppCompatActivity() {
 
                     val imgProfileAvatar = findViewById<ImageView>(R.id.imgProfileAvatar)
                     if (!profile.profile_pic.isNullOrEmpty()) {
-                        val fullUrl = if (profile.profile_pic!!.startsWith("http")) profile.profile_pic else "${BackendApiService.BASE_URL.removeSuffix("/")}${profile.profile_pic}"
+                        val fullUrl = BackendApiService.getFullUrl(profile.profile_pic)
                         Glide.with(this@FacultyProfileActivity)
                             .load(fullUrl)
                             .placeholder(R.drawable.ic_profile)
@@ -155,7 +155,7 @@ class FacultyProfileActivity : AppCompatActivity() {
                         val newUrl = response.body()?.url
                         if (!newUrl.isNullOrEmpty()) {
                             val imgProfile = findViewById<ImageView>(R.id.imgProfileAvatar)
-                            val fullUrl = if (newUrl.startsWith("http")) newUrl else "${BackendApiService.BASE_URL.removeSuffix("/")}$newUrl"
+                            val fullUrl = BackendApiService.getFullUrl(newUrl)
                             Glide.with(this@FacultyProfileActivity)
                                 .load(fullUrl)
                                 .placeholder(R.drawable.ic_profile)

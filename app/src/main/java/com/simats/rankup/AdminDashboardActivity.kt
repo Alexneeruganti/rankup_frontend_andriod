@@ -51,7 +51,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_dashboard -> {
-                    // Already on dashboard
+                    // Already on dashboard, just close drawer
                 }
                 R.id.nav_students -> {
                     startActivity(Intent(this, UserManagementActivity::class.java))
@@ -96,7 +96,7 @@ class AdminDashboardActivity : AppCompatActivity() {
                     findViewById<android.widget.TextView>(R.id.tvAdminName)?.text = profile.name ?: "System Admin"
                     
                     if (!profile.profile_pic.isNullOrEmpty()) {
-                        val fullUrl = if (profile.profile_pic!!.startsWith("http")) profile.profile_pic else "${com.simats.rankup.network.BackendApiService.BASE_URL.removeSuffix("/")}${profile.profile_pic}"
+                        val fullUrl = com.simats.rankup.network.BackendApiService.getFullUrl(profile.profile_pic)
                         com.bumptech.glide.Glide.with(this@AdminDashboardActivity)
                             .load(fullUrl)
                             .circleCrop()

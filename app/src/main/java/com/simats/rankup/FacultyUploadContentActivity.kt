@@ -55,7 +55,6 @@ class FacultyUploadContentActivity : AppCompatActivity() {
     private fun setupNavigation() {
         // Back Button
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
-             startActivity(Intent(this, FacultyHomeActivity::class.java))
              finish()
         }
     }
@@ -196,7 +195,8 @@ class FacultyUploadContentActivity : AppCompatActivity() {
     }
 
     private fun publishResource(title: String, description: String, tags: String, resourceType: String, fileLink: String, category: String) {
-        val facultyId = 1 // Hardcoded to 1 because 2 doesn't exist in the database (Foreign Key constraint)
+        val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val facultyId = sharedPref.getInt("USER_ID", 1)
 
         val request = com.simats.rankup.network.UploadResourceRequest(
             faculty_id = facultyId,

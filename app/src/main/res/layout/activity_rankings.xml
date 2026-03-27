@@ -156,6 +156,7 @@
                         android:elevation="10dp"/>
 
                     <ImageView
+                        android:id="@+id/ivRank1Avatar"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_medal" 
@@ -228,6 +229,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/podium1">
 
                     <ImageView
+                        android:id="@+id/ivRank2Avatar"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_medal"
@@ -297,6 +299,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/podium1">
 
                     <ImageView
+                        android:id="@+id/ivRank3Avatar"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_medal"
@@ -400,6 +403,7 @@
             android:padding="8dp">
 
              <TextView
+                android:id="@+id/tvMyRank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#12"
@@ -410,6 +414,7 @@
                 android:layout_marginEnd="16dp"/>
 
             <ImageView
+                android:id="@+id/ivMyProfilePic"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_medal"
@@ -424,9 +429,10 @@
                 android:layout_marginStart="16dp">
 
                 <TextView
+                    android:id="@+id/tvMyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Priya Sharma"
+                    android:text="User Name"
                     android:textColor="#0D1B2A"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
@@ -449,6 +455,7 @@
                 android:gravity="end"
                 android:layout_marginEnd="16dp">
                 <TextView
+                    android:id="@+id/tvMyScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1720"

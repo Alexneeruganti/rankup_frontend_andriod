@@ -142,6 +142,10 @@ class RankingsActivity : AppCompatActivity() {
     }
 
     private fun loadRankings() {
+        val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val currentUserId = sharedPref.getInt("USER_ID", -1)
+        val currentUserName = sharedPref.getString("USER_NAME", "User Name") ?: "User Name"
+
         // Clear previous podium data
         findViewById<TextView>(R.id.tvRank1Name).text = ""
         findViewById<TextView>(R.id.tvRank1Score).text = ""
@@ -159,14 +163,26 @@ class RankingsActivity : AppCompatActivity() {
                     if (leaderboard.isNotEmpty()) {
                         findViewById<TextView>(R.id.tvRank1Name).text = leaderboard[0].name
                         findViewById<TextView>(R.id.tvRank1Score).text = leaderboard[0].score.toString()
+                        val iv1 = findViewById<android.widget.ImageView>(R.id.ivRank1Avatar)
+                        if (!leaderboard[0].profile_pic.isNullOrEmpty()) {
+                            com.bumptech.glide.Glide.with(this@RankingsActivity).load(BackendApiService.getFullUrl(leaderboard[0].profile_pic)).placeholder(R.drawable.ic_medal).circleCrop().into(iv1)
+                        } else iv1.setImageResource(R.drawable.ic_medal)
                     }
                     if (leaderboard.size > 1) {
                         findViewById<TextView>(R.id.tvRank2Name).text = leaderboard[1].name
                         findViewById<TextView>(R.id.tvRank2Score).text = leaderboard[1].score.toString()
+                        val iv2 = findViewById<android.widget.ImageView>(R.id.ivRank2Avatar)
+                        if (!leaderboard[1].profile_pic.isNullOrEmpty()) {
+                            com.bumptech.glide.Glide.with(this@RankingsActivity).load(BackendApiService.getFullUrl(leaderboard[1].profile_pic)).placeholder(R.drawable.ic_medal).circleCrop().into(iv2)
+                        } else iv2.setImageResource(R.drawable.ic_medal)
                     }
                     if (leaderboard.size > 2) {
                         findViewById<TextView>(R.id.tvRank3Name).text = leaderboard[2].name
                         findViewById<TextView>(R.id.tvRank3Score).text = leaderboard[2].score.toString()
+                        val iv3 = findViewById<android.widget.ImageView>(R.id.ivRank3Avatar)
+                        if (!leaderboard[2].profile_pic.isNullOrEmpty()) {
+                            com.bumptech.glide.Glide.with(this@RankingsActivity).load(BackendApiService.getFullUrl(leaderboard[2].profile_pic)).placeholder(R.drawable.ic_medal).circleCrop().into(iv3)
+                        } else iv3.setImageResource(R.drawable.ic_medal)
                     }
 
                     // Bind List
@@ -178,13 +194,50 @@ class RankingsActivity : AppCompatActivity() {
                                 rank = i + 1,
                                 name = entry.name,
                                 department = "Engineering", // DB currently doesn't sync department in the bare response
-                                points = entry.score
+                                points = entry.score,
+                                profilePic = entry.profile_pic
                             )
                         )
                     }
                     
                     val rvRankings = findViewById<RecyclerView>(R.id.rvRankings)
                     rvRankings.adapter = RankingsAdapter(listStudents)
+
+                    // Bind Current User
+                    var myEntry: com.simats.rankup.network.LeaderboardEntry? = null
+                    var myRank = -1
+                    for (i in leaderboard.indices) {
+                        if (leaderboard[i].student_id == currentUserId) {
+                            myEntry = leaderboard[i]
+                            myRank = i + 1
+                            break
+                        }
+                    }
+
+                    val tvMyRank = findViewById<TextView>(R.id.tvMyRank)
+                    val tvMyName = findViewById<TextView>(R.id.tvMyName)
+                    val tvMyScore = findViewById<TextView>(R.id.tvMyScore)
+                    val ivMyProfilePic = findViewById<android.widget.ImageView>(R.id.ivMyProfilePic)
+
+                    if (myEntry != null) {
+                        tvMyRank.text = "#$myRank"
+                        tvMyName.text = myEntry.name
+                        tvMyScore.text = myEntry.score.toString()
+                        if (!myEntry.profile_pic.isNullOrEmpty()) {
+                            com.bumptech.glide.Glide.with(this@RankingsActivity)
+                                .load(BackendApiService.getFullUrl(myEntry.profile_pic))
+                                .placeholder(R.drawable.ic_medal)
+                                .circleCrop()
+                                .into(ivMyProfilePic)
+                        } else {
+                            ivMyProfilePic.setImageResource(R.drawable.ic_medal)
+                        }
+                    } else {
+                        tvMyRank.text = "NR"
+                        tvMyName.text = currentUserName
+                        tvMyScore.text = "0"
+                        ivMyProfilePic.setImageResource(R.drawable.ic_medal)
+                    }
 
                 } else {
                     Toast.makeText(this@RankingsActivity, "Failed to load Leaderboard.", Toast.LENGTH_SHORT).show()

@@ -277,9 +277,11 @@ class StudentTakeTestActivity : AppCompatActivity() {
     private fun submitTest() {
         countDownTimer?.cancel()
         
-        // Pass a mock student_id 1 since auth isn't in scope yet
+        val sharedPref = getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val studentId = sharedPref.getInt("USER_ID", 1)
+
         val request = com.simats.rankup.network.SubmitTestResultRequest(
-            student_id = 1,
+            student_id = studentId,
             test_id = testId,
             marks = score,
             total_marks = questions.size

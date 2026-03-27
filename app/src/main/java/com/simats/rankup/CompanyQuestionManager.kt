@@ -51,10 +51,10 @@ object CompanyQuestionManager {
 
     private fun getInitialMockQuestions(): List<CompanyQuestion> {
         return listOf(
-            CompanyQuestion("Google", "Array Reversal", "Hard", "Reverse an array without using extra space.", "1 <= N <= 1000", "First line N, second line array."),
-            CompanyQuestion("Amazon", "Rainwater Trapping", "Hard", "Calculate how much water can be trapped between blocks.", "1 <= N <= 10^5", "Array of heights."),
-            CompanyQuestion("Microsoft", "Linked List Cycle", "Medium", "Detect if a cycle exists in a linked list.", "N nodes", "Head of list."),
-            CompanyQuestion("Zoho", "Pattern Printing", "Medium", "Print the snake pattern.", "N <= 20", "Integer N")
+            CompanyQuestion(0, "Google", "Array Reversal", "Hard", "Reverse an array without using extra space.", "1 <= N <= 1000", "First line N, second line array."),
+            CompanyQuestion(0, "Amazon", "Rainwater Trapping", "Hard", "Calculate how much water can be trapped between blocks.", "1 <= N <= 10^5", "Array of heights."),
+            CompanyQuestion(0, "Microsoft", "Linked List Cycle", "Medium", "Detect if a cycle exists in a linked list.", "N nodes", "Head of list."),
+            CompanyQuestion(0, "Zoho", "Pattern Printing", "Medium", "Print the snake pattern.", "N <= 20", "Integer N")
         )
     }
 }

@@ -31,7 +31,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add New User"
+        android:text="Student Registration"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Select Role"
+                        android:text="Select Study Module"
                         android:textColor="#757575"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -92,7 +92,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
-                            android:text="Student"
+                            android:text="Placement Student"
                             android:textColor="#0D1B2A"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,10 +228,10 @@
 
                     <!-- Submit Button -->
                     <Button
-                        android:id="@+id/btnSaveUser"
+                        android:id="@+id/btnRegister"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:text="Save User"
+                        android:text="Register"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold"

@@ -43,6 +43,28 @@ class StudentCodingActivity : AppCompatActivity() {
 
         initViews()
         setupListeners()
+        handleIntentExtras()
+    }
+
+    private fun handleIntentExtras() {
+        val title = intent.getStringExtra("EXTRA_QUESTION_TITLE")
+        val desc = intent.getStringExtra("EXTRA_DESC")
+        val constraints = intent.getStringExtra("EXTRA_CONSTRAINTS")
+        val inputFormat = intent.getStringExtra("EXTRA_INPUT_FORMAT")
+
+        if (title != null) {
+            val drill = DynamicCodingDrill(
+                title = title,
+                description = desc ?: "",
+                difficulty = "Company Question",
+                constraints = constraints ?: "",
+                input_format = inputFormat ?: "",
+                sample_input = "",
+                sample_output = ""
+            )
+            currentQuestion = drill
+            displayQuestion(drill)
+        }
     }
 
     private fun initViews() {
